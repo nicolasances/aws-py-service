@@ -1,4 +1,4 @@
-from totoapicontroller.model.TotoConfig import TotoConfig
+from TotoConfig import TotoConfig
 from totoapicontroller.model.singleton import singleton
 
 @singleton
