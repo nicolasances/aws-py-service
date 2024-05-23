@@ -1,3 +1,4 @@
+import json
 import os
 from abc import ABC, abstractmethod
 from totoapicontroller.TotoLogger import TotoLogger
@@ -66,5 +67,5 @@ class TotoConfig(ABC):
             raise e
 
         secret = get_secret_value_response['SecretString']
-
-        return secret
+        
+        return json.loads(secret)["jwt-signing-key"]

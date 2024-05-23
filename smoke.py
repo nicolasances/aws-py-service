@@ -10,4 +10,4 @@ def test_smoke(request: Request, user_context: UserContext, exec_context: Execut
     
     exec_context.logger.log(exec_context.cid, f"It's working!")
     
-    return {"ok": True}
+    return {"ok": True, "message": "This Smoke test is working fine!"}
