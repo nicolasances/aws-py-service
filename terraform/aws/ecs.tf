@@ -1,8 +1,8 @@
 ########################################################
 # 1. Task Definition
 ########################################################
-resource "aws_ecs_task_definition" "toto_aws_py_taskdef" {
-  family = "toto-aws-py"
+resource "aws_ecs_task_definition" "service_task_def" {
+  family = local.toto_microservice_name
   requires_compatibilities = ["FARGATE"]
   execution_role_arn = format("arn:aws:iam::%s:role/toto-ecs-task-execution-role-%s", var.aws_account_id, var.toto_environment)
   task_role_arn = format("arn:aws:iam::%s:role/toto-ecs-task-role-%s", var.aws_account_id, var.toto_environment)
@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "toto_aws_py_taskdef" {
   network_mode = "awsvpc"
   container_definitions = jsonencode([
     {
-      name      = "toto-aws-py"
+      name      = local.toto_microservice_name
       image     = format("%s.dkr.ecr.eu-west-1.amazonaws.com/aws-py-service", var.aws_account_id)
       cpu       = 1024
       memory    = 2048
@@ -27,3 +27,14 @@ resource "aws_ecs_task_definition" "toto_aws_py_taskdef" {
     }
   ])
 }
+
+########################################################
+# 2. Service
+########################################################
+# resource "aws_ecs_service" "service" {
+#   name = "toto-py-service"
+#   cluster = format("arn:aws:ecs:eu-west-1:%s:cluster/toto-%s-cluster", var.aws_account_id, var.toto_environment)
+#   task_definition = aws_ecs_task_definition.toto_aws_py_taskdef.arn
+#   desired_count = 1
+#   TODO
+# }

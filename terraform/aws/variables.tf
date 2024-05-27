@@ -25,3 +25,11 @@ variable "toto_environment" {
   description = "Toto Environment (dev, prod, etc..)"
   type = string
 }
+
+########################################################
+# 3. Environment Core info
+########################################################
+variable "toto_vpc_id" {
+  description = "ID of the VPC that host Toto Services"
+  type = string
+}
