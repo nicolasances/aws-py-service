@@ -13,15 +13,15 @@ variable "aws_secret_access_key" {
   sensitive = true
 }
 
+variable "aws_account_id" {
+  description = "Account ID"
+  type = string
+}
+
 ########################################################
 # 2. Toto Environment & Core Variables
 ########################################################
 variable "toto_environment" {
   description = "Toto Environment (dev, prod, etc..)"
   type = string
-}
-variable "jwt_signing_key" {
-    description = "Toto Signing Key for JWT Tokens"
-    type = string
-    sensitive = true
 }
