@@ -6,7 +6,7 @@ resource "aws_ecs_task_definition" "service_task_def" {
   requires_compatibilities = ["FARGATE"]
   execution_role_arn = format("arn:aws:iam::%s:role/toto-ecs-task-execution-role-%s", var.aws_account_id, var.toto_environment)
   task_role_arn = format("arn:aws:iam::%s:role/toto-ecs-task-role-%s", var.aws_account_id, var.toto_environment)
-  cpu = 1024
+  cpu = 2048
   memory = 2048
   network_mode = "awsvpc"
   container_definitions = jsonencode([
