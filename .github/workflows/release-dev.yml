@@ -31,6 +31,14 @@ jobs:
         directory: ${{ env.TF_CONFIG_DIRECTORY }}
         speculative: true
 
+    - name: Create Terraform Plan Run
+      uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
+      id: plan-run
+      with:
+        workspace: ${{ env.TF_WORKSPACE }}
+        configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
+        plan_only: true
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with: 
