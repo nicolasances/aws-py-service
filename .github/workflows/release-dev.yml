@@ -6,6 +6,12 @@ on:
       - 'feature/**'
       - main
 
+env:
+  TF_CLOUD_ORGANIZATION: "Imatz"
+  TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+  TF_WORKSPACE: "aws-py-service-dev"
+  TF_CONFIG_DIRECTORY: "./terraform/aws"
+
 jobs:
   # This workflow contains a single job called "release"
   release:
@@ -16,6 +22,14 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+
+    - name: Upload Terraform Configuration
+      uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
+      id: plan-upload
+      with: 
+        workspace: ${{ env.TF_WORKSPACE }}
+        directory: ${{ env.TF_CONFIG_DIRECTORY }}
+        speculative: true
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
