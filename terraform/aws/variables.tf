@@ -28,9 +28,23 @@ variable "toto_environment" {
 
 ########################################################
 # 3. Environment Core info
+#    These need to be created by toto-aws-terra,
+#    when creating the repo, not by the service itself.
 ########################################################
 variable "toto_vpc_id" {
   description = "ID of the VPC that host Toto Services"
+  type = string
+}
+variable "ecs_subnet_1" {
+  description = "ARN of one of the two subnets to be used"
+  type = string
+}
+variable "ecs_subnet_2" {
+  description = "ARN of the other of the two subnets to be used"
+  type = string
+}
+variable "ecs_security_group" {
+  description = "value"
   type = string
 }
 

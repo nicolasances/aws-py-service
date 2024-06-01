@@ -41,4 +41,9 @@ resource "aws_ecs_service" "service" {
     capacity_provider = "FARGATE"
     weight = 1
   }
+  network_configuration {
+    subnets = [ var.ecs_subnet_1, var.ecs_subnet_2 ]
+    security_groups = [ var.ecs_security_group ]
+    assign_public_ip = true
+  }
 }
