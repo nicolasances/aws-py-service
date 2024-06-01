@@ -31,10 +31,14 @@ resource "aws_ecs_task_definition" "service_task_def" {
 ########################################################
 # 2. Service
 ########################################################
-# resource "aws_ecs_service" "service" {
-#   name = "toto-py-service"
-#   cluster = format("arn:aws:ecs:eu-west-1:%s:cluster/toto-%s-cluster", var.aws_account_id, var.toto_environment)
-#   task_definition = aws_ecs_task_definition.toto_aws_py_taskdef.arn
-#   desired_count = 1
-#   TODO
-# }
+resource "aws_ecs_service" "service" {
+  name = "toto-py-service"
+  cluster = format("arn:aws:ecs:eu-west-1:%s:cluster/toto-%s-cluster", var.aws_account_id, var.toto_environment)
+  task_definition = aws_ecs_task_definition.toto_aws_py_taskdef.arn
+  desired_count = 1
+  capacity_provider_strategy {
+    base = 0
+    capacity_provider = "FARGATE"
+    weight = 1
+  }
+}
