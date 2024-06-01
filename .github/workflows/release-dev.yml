@@ -25,19 +25,18 @@ jobs:
 
     - name: Upload Terraform Configuration
       uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
-      id: plan-upload
+      id: tf-upload
       with: 
         workspace: ${{ env.TF_WORKSPACE }}
         directory: ${{ env.TF_CONFIG_DIRECTORY }}
         speculative: true
 
-    - name: Create Terraform Plan Run
+    - name: Run Terraform Apply
       uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
-      id: plan-run
+      id: tf-apply-run
       with:
         workspace: ${{ env.TF_WORKSPACE }}
-        configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
-        plan_only: true
+        configuration_version: ${{ steps.tf-upload.outputs.configuration_version_id }}
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
