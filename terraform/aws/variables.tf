@@ -33,3 +33,11 @@ variable "toto_vpc_id" {
   description = "ID of the VPC that host Toto Services"
   type = string
 }
+
+########################################################
+# 4. Microservice Variables
+########################################################
+variable "container_image_tag" {
+  description = "Tag of the Image that needs to be deployed"
+  type = string
+}
