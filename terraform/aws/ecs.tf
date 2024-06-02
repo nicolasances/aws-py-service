@@ -46,4 +46,9 @@ resource "aws_ecs_service" "service" {
     security_groups = [ var.ecs_security_group ]
     assign_public_ip = true
   }
+  load_balancer {
+    target_group_arn = aws_lb_target_group.service_tg.arn
+    container_name = local.toto_microservice_name
+    container_port = 8080
+  }
 }
