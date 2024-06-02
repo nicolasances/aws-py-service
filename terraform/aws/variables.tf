@@ -51,6 +51,18 @@ variable "alb_listener_arn" {
   description = "Listener ARN of the ALB"
   type = string
 }
+variable "alb_zone_id" {
+  description = "Zone ID of the ALB needed for the Route53 routing alias configuration"
+  type = string
+}
+variable "alb_dns_name" {
+  description = "DNS Name of the ALB needed for the Route53 routing alias configuration"
+  type = string
+}
+variable "route53_zone_id" {
+  description = "Route53 Zone ID used for creating DNS A Records"
+  type = string
+}
 
 ########################################################
 # 4. Microservice Variables
