@@ -16,6 +16,7 @@ env:
   TF_VAR_ecs_subnet_1: "\"${{ secrets.ECS_SUBNET_1 }}\""
   TF_VAR_ecs_subnet_2: "\"${{ secrets.ECS_SUBNET_2 }}\""
   TF_VAR_ecs_security_group: "\"${{ secrets.ecs_security_group }}\""
+  TF_VAR_alb_listener_arn: "\"${{ secrets.alb_listener_arn }}\""
   
 
 jobs:
