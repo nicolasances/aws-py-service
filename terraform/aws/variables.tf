@@ -47,6 +47,10 @@ variable "ecs_security_group" {
   description = "value"
   type = string
 }
+variable "alb_listener_arn" {
+  description = "Listener ARN of the ALB"
+  type = string
+}
 
 ########################################################
 # 4. Microservice Variables
