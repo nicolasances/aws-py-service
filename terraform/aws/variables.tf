@@ -63,6 +63,21 @@ variable "route53_zone_id" {
   description = "Route53 Zone ID used for creating DNS A Records"
   type = string
 }
+variable "ecs_execution_role_arn" {
+  description = "ECS Task Execution Role ARN for the environment"
+  type = string
+  sensitive = true
+}
+variable "ecs_task_role_arn" {
+  description = "ECS Task role ARN for the environment"
+  type = string
+  sensitive = true
+}
+variable "ecs_cluster_arn" {
+  description = "ECS Cluster ARN for the environment"
+  type = string
+  sensitive = true
+}
 
 ########################################################
 # 4. Microservice Variables

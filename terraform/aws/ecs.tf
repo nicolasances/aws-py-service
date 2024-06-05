@@ -4,8 +4,8 @@
 resource "aws_ecs_task_definition" "service_task_def" {
   family = local.toto_microservice_name
   requires_compatibilities = ["FARGATE"]
-  execution_role_arn = format("arn:aws:iam::%s:role/toto-ecs-task-execution-role-%s", var.aws_account_id, var.toto_environment)
-  task_role_arn = format("arn:aws:iam::%s:role/toto-ecs-task-role-%s", var.aws_account_id, var.toto_environment)
+  execution_role_arn = var.ecs_execution_role_arn
+  task_role_arn = var.ecs_task_role_arn
   cpu = 1024
   memory = 2048
   network_mode = "awsvpc"
@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "service_task_def" {
 ########################################################
 resource "aws_ecs_service" "service" {
   name = "toto-py-service"
-  cluster = format("arn:aws:ecs:eu-west-1:%s:cluster/toto-%s", var.aws_account_id, var.toto_environment)
+  cluster = var.ecs_cluster_arn
   task_definition = aws_ecs_task_definition.service_task_def.arn
   desired_count = 1
   capacity_provider_strategy {
